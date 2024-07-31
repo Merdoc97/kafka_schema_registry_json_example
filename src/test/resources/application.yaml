@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: kafka_schema_registry_json_example
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    default-property-inclusion: non_null
+    deserialization:
+      fail-on-unknown-properties: true
+    locale: en_US
+  kafka:
+    consumer:
+      client-id: local-test
+      group-id: local-test
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # this serializer better than KafkaJsonSchemaDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      ack-mode: record
+    producer:
+      client-id: local-producer
+    
+    bootstrap-servers: localhost:8082
+    properties:
+      schema.registry.url: mock://mock
+      auto.register.schemas: false
+      use.latest.version: true
+      latest.compatibility.strict: false
+      json:
+        fail.invalid.schema: true
+        oneof.for.nullables: false
+        write.dates.iso8601: true
+#async api generator
+springwolf:
+  enabled: false
+kafka:
+  enabled: true
+  consumer:
+    topic: test_schema_registry
