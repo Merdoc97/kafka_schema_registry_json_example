@@ -5,3 +5,5 @@
 
 current example covers only producer validation because KafkaJsonSchemaDeserializer has a bug if some put into kafka some wrong data,
 consumer validation work via validation framework and use .DLT pattern for wrong data 
+
+ to get asymc api schema go to springwolf/asyncapi-ui.html
